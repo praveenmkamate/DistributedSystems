@@ -1,0 +1,21 @@
+version: '3'
+services:
+    auldfellas:
+        build: auldfellas
+
+    girlpower:
+        build: girlpower
+
+    dodgydrivers:
+        build: dodgydrivers
+
+    broker:
+        build: broker
+        environment:
+            SERVER_HOST: "-h auldfellas -p 8081 -h dodgydrivers -p 8082 -h girlpower -p 8083"
+        depends_on:
+            - auldfellas
+            - girlpower
+            - dodgydrivers
+        ports:
+            -   8084:8084

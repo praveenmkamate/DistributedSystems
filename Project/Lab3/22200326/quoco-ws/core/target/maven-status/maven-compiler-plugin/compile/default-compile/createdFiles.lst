@@ -1,5 +1,0 @@
-service\core\AbstractQuotationService.class
-service\core\QuoterService.class
-service\core\Quotation.class
-service\core\BrokerService.class
-service\core\ClientInfo.class

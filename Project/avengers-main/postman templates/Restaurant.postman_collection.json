@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "04a8c8b6-8e03-4609-9df6-2798ba6d571b",
+		"name": "Restaurant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10638492"
+	},
+	"item": [
+		{
+			"name": "Active Restaurants",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8101/restaurant/api/v1/activeRestaurants",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8101",
+					"path": [
+						"restaurant",
+						"api",
+						"v1",
+						"activeRestaurants"
+					]
+				},
+				"description": "List of currently active restaurants"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Restaurant Menu",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8101/restaurant/api/v1/getMenu/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8101",
+					"path": [
+						"restaurant",
+						"api",
+						"v1",
+						"getMenu",
+						"1"
+					]
+				},
+				"description": "Get menu items for specific restaurant"
+			},
+			"response": []
+		},
+		{
+			"name": "Add Restaurant Menu",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"menu_id\": 1,\r\n    \"category_id\": 1,\r\n    \"item_name\": \"New Food item name\",\r\n    \"price\": 5.0,\r\n    \"status\": \"ACTIVE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8101/restaurant/api/v1/addItemsToMenu/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8101",
+					"path": [
+						"restaurant",
+						"api",
+						"v1",
+						"addItemsToMenu",
+						"1"
+					]
+				},
+				"description": "Add item to restaurant menu"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Restaurant orders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8101/restaurant/api/v1/getOrders/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8101",
+					"path": [
+						"restaurant",
+						"api",
+						"v1",
+						"getOrders",
+						"1"
+					]
+				},
+				"description": "Get all the orders for specified restaurant"
+			},
+			"response": []
+		},
+		{
+			"name": "Update order status",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": \"1672706395884\",\r\n  \"restaurant_id\": 1,\r\n  \"customer_id\": null,\r\n  \"delivery_agent_id\": null,\r\n  \"order_time\": \"03/01/2023 00:39:55\",\r\n  \"delivery_time\": null,\r\n  \"delivery_address\": null,\r\n  \"order_price\": 11,\r\n  \"order_status\": \"READY_FOR_PICKUP\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8101/restaurant/api/v1/updateOrderStatus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8101",
+					"path": [
+						"restaurant",
+						"api",
+						"v1",
+						"updateOrderStatus"
+					]
+				},
+				"description": "Update the order status for specified order"
+			},
+			"response": []
+		},
+		{
+			"name": "GET All restaurant Menu",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8101/restaurant/api/v1/restaurants/menus/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8101",
+					"path": [
+						"restaurant",
+						"api",
+						"v1",
+						"restaurants",
+						"menus",
+						"items"
+					]
+				},
+				"description": "Get the menu items for all the available active restaurants"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Specific restaurant menu",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8101/restaurant/api/v1/restaurants/menus/items/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8101",
+					"path": [
+						"restaurant",
+						"api",
+						"v1",
+						"restaurants",
+						"menus",
+						"items",
+						"1"
+					]
+				},
+				"description": "Get all the menus for specific restaurant"
+			},
+			"response": []
+		}
+	]
+}

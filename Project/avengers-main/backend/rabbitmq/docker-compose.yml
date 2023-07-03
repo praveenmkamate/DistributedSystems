@@ -1,0 +1,9 @@
+version: '3.9'
+services:
+    rabbitmq:
+        image: rabbitmq:3.11.5-management
+        command: "/bin/bash -c \"rabbitmq-plugins enable rabbitmq_mqtt; rabbitmq-plugins enable rabbitmq_web_stomp; rabbitmq-server\""
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+            - "15674:15674"

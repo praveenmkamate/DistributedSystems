@@ -1,0 +1,26 @@
+table {
+    width: 50%;
+}
+
+td {
+    text-align: center;
+}
+
+th, td {
+    padding: 15px;
+}
+
+th {
+    background-color: #0398fc;
+    color: white;
+}
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+.pastOrders{
+    padding-left: 50px;
+}
+
+  

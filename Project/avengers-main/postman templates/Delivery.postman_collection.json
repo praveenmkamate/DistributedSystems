@@ -1,0 +1,164 @@
+{
+	"info": {
+		"_postman_id": "4fd33c7b-f219-4860-8e8d-fcb4da4a1136",
+		"name": "Delivery",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10638492"
+	},
+	"item": [
+		{
+			"name": "GET all the delivery agents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/delivery/api/v1/delivery-agents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"delivery",
+						"api",
+						"v1",
+						"delivery-agents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all the available delivery agents",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/delivery/api/v1/available-delivery-agents",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"delivery",
+						"api",
+						"v1",
+						"available-delivery-agents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET the current assigned order to delivery agent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/delivery/api/v1/delivery-agent/current-orders/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"delivery",
+						"api",
+						"v1",
+						"delivery-agent",
+						"current-orders",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET the orders assigned to delivery agent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/delivery/api/v1/delivery-agent/orders/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"delivery",
+						"api",
+						"v1",
+						"delivery-agent",
+						"orders",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a delivery agent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"AgentX\",\r\n    \"phone\": \"9876543210\",\r\n    \"status\": \"AVAILABLE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/delivery/api/v1/delivery-agent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"delivery",
+						"api",
+						"v1",
+						"delivery-agent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update the delivery agent",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Agent1\",\r\n    \"phone\": \"1234567890\",\r\n    \"status\": \"AVAILABLE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/delivery/api/v1/delivery-agent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"delivery",
+						"api",
+						"v1",
+						"delivery-agent"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

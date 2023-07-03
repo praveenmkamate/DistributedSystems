@@ -1,0 +1,128 @@
+version: '3.9'
+services:
+  mssql:
+    build:
+      context: ./backend/mssql
+    container_name: mssql
+    ports:
+      - '1433:1433'
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=IXlogin#1
+
+  rabbitmq:
+    image: rabbitmq:3.11.5-management
+    hostname: rabbitmq
+    container_name: rabbitmq
+    command: "/bin/bash -c \"rabbitmq-plugins enable rabbitmq_mqtt; rabbitmq-plugins enable rabbitmq_web_stomp; rabbitmq-server\""
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+      - "15674:15674"
+    healthcheck:
+      test: [ "CMD", "rabbitmqctl", "status"]
+      interval: 4s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
+    depends_on:
+      - mssql
+
+  eureka:
+    build:
+      context: ./backend/service-discovery
+    container_name: eureka
+    ports:
+      - '8761:8761'
+    environment:
+      - PORT=8761
+    healthcheck:
+      test: curl --fail http://eureka:8761 || exit 1
+      interval: 2s
+      retries: 5
+      start_period: 20s
+      timeout: 10s
+
+  gateway:
+    build:
+      context: ./backend/gateway
+    container_name: gateway
+    ports:
+      - '8050:8050'
+    environment:
+      - PORT=8050
+    depends_on:
+      eureka:
+        condition: service_healthy
+
+  restaurant:
+    build:
+      context: ./backend/restaurant
+    container_name: restaurant
+    ports:
+      - '8101:8101'
+    environment:
+      - PORT=8101
+      - SQL=mssql
+      - EUREKA=eureka
+      - RABBITMQ=rabbitmq
+    depends_on:
+      eureka:
+        condition: service_healthy
+      mssql:
+        condition: service_started
+      gateway:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
+  customer:
+    build:
+      context: ./backend/customer
+    container_name: customer
+    ports:
+      - '8100:8100'
+    environment:
+      - PORT=8100
+      - SQL=mssql
+      - EUREKA=eureka
+      - RABBITMQ=rabbitmq
+    depends_on:
+      eureka:
+        condition: service_healthy
+      mssql:
+        condition: service_started
+      gateway:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
+  delivery:
+    build:
+      context: ./backend/delivery
+    container_name: delivery
+    ports:
+      - '8081:8081'
+    environment:
+      - PORT=8081
+      - SQL=mssql
+      - EUREKA=eureka
+      - RABBITMQ=rabbitmq
+    depends_on:
+      eureka:
+        condition: service_healthy
+      mssql:
+        condition: service_started
+      gateway:
+        condition: service_started
+      rabbitmq:
+        condition: service_healthy
+
+  react-ui:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    container_name: react-ui
+    depends_on:
+      - restaurant
